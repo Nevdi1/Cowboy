@@ -1,0 +1,362 @@
+// ФУНКЦИИ
+@use "sass:math";
+//TO %
+@function prc($pxOne, $pxTwo) {
+	$result: math.div($pxOne, $pxTwo) * 100%;
+	@return $result;
+}
+//REM
+@function rem($px) {
+	$result: math.div($px, 16) + rem;
+	@return $result;
+}
+//EM
+@function em($px) {
+	$result: math.div($px, 16) + em;
+	@return $result;
+}
+
+$pc: em(1200);
+$tablet: em(991.98);
+$mobile: em(767.98);
+$mobileSmall: em(479.98);
+
+// ОБНУЛЕНИЕ СТИЛЕЙ
+html {
+	font-size: 16px;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: "Inter", Arial;
+	line-height: 1;
+	font-weight: 500;
+	color: #000;
+	background-color: #E6DAC0;
+}
+/* --------------------------------------------------- */
+.wrapper {
+	min-height: 100%;
+	overflow: clip;
+	display: flex;
+	flex-direction: column;
+	main{
+		flex-grow: 1;
+	}
+}
+[class*="__container"] {
+	// max-width: px;
+	margin: 0px auto;
+	padding-inline: clamp(15px, 3vw, 70px);
+}
+/* -------------------------Components----------------------- */
+.button {
+	border-radius: 262px;
+	background-color: #f3ecde;
+	padding: clamp(10px, 1.3vw, 35px) clamp(15px, 1.5vw, 47px);
+	font-size: clamp(16px, 1vw, 32px);
+	text-align: center;
+
+	transition: background-color 0.3s, color 0.3s;
+
+	&:hover{
+		background-color: #000;
+		color: #fff;
+	}
+}
+
+.button--dark {
+	background-color: #000;
+	color: #fff;
+	&:hover{
+		background-color: #f3ecde;
+		color: #000;
+	}
+}
+/* -------------------------Header-------------------------- */
+.header {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 50;
+	background-color: #e6dac0;
+	padding-block: clamp(15px, 2vw, 42px);
+
+	&__container {
+		display: flex;
+		align-items: center;
+
+		@media (max-width: 630px){
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			row-gap: 15px;
+		}
+	}
+
+	&__logo-link {}
+
+	&__logo {
+		width: clamp(150px, 10vw, 260px);
+	}
+
+	&__menu {}
+
+	&__button {
+		border: 1.2px solid #000;
+		border-radius: 260px;
+		padding-block: clamp(10px, 2vw, 19px);
+		padding-inline: clamp(30px, 2vw, 83px);
+		font-size: clamp(16px, 1vw, 32px);
+		text-align: center;
+		transition: background-color 0.3s, color 0.3s;
+		&:hover{
+			background-color: #000;
+			color: #fff;
+		}
+
+		@media (max-width: 400px){
+			align-self: stretch;
+		}
+	}
+}
+
+.menu {
+flex-grow: 1;
+	&__list {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: clamp(10px, 2vw, 80px);
+	}
+
+	&__item {}
+
+	&__link {
+		font-size: clamp(16px, 1vw,32px);
+		&:hover{
+			text-decoration: underline;
+		}
+	}
+}
+/* -------------------------Page-------------------------- */
+.page {
+}
+/* -------------------------Hero-------------------------- */
+.hero {
+	padding-top: clamp(100px, 7.5vw, 200px);
+	min-height: 100svh;
+	display: flex;
+	align-items: flex-end;
+
+	&__container {
+		display: flex;
+		gap: 30px;
+		align-items: center;
+		@media (max-width:$tablet){
+			flex-direction: column;
+		}
+	}
+
+	&__content {
+		flex-grow: 1;
+		flex-basis: 100px;
+		padding-block: clamp(20px, 7.5vw, 40px);
+		@media (max-width:$tablet){
+			text-align: center;
+		}
+	}
+
+	&__title {
+		font-weight: 600;
+			font-size: clamp(30px, 5vw, 128px);
+			line-height: 110%;
+			max-width: 700px;
+		&:not(:last-child) {
+			margin-bottom: 0.1875em;
+		}
+	}
+
+	&__text {
+			font-size: clamp(16px, 2vw, 40px);
+			font-weight: 300;
+			line-height: 150%;
+			> *:not(:last-child) {margin-bottom: 0.5em;}
+			&:not(:last-child) {
+				margin-bottom: 1.6em;
+			}
+	}
+
+	&__buttons {
+		gap: clamp(10px, 1vw, 28px);
+		display: flex;
+		flex-wrap: wrap;
+		@media (max-width:$tablet){
+			justify-content:center;align-items: center;
+		}
+		@media (max-width: 400px){
+			align-items: stretch;
+			flex-direction: column;
+		}
+	}
+
+	&__button {}
+
+	&__picture {
+		flex-grow: 1;
+		flex-basis: 100px;
+		align-items: flex-end;
+	}
+
+	&__image {}
+}
+/* -------------------------MODEL-------------------------- */
+.models {
+	display: flex;
+	min-height: 100svh;
+	@media (max-width:$mobile){
+		flex-direction: column;
+	}
+	&__item {
+	}
+}
+
+.item-model {
+	padding-inline: clamp(15px, 3vw, 100px);
+	padding-bottom: clamp(15px, 3vw, 300px);
+	padding-top: 50px;
+	position: relative;
+	display: flex;
+	align-items: flex-end;
+	flex-basis: 50%;
+	@media (max-width:$mobile){
+		flex-basis: 50svh;
+	}
+
+	&__content {
+		position: relative;
+		z-index: 5;
+		color: #fff;
+	}
+
+	&__title {
+		font-weight: 600;
+		font-size: clamp(28px, 3vw, 65px);
+		&:not(:last-child) {
+			margin-bottom: 0.37em;
+		}
+	}
+
+	&__text {
+		line-height: 1.5;
+		font-size: clamp(16px, 1vw, 36px);
+		&:not(:last-child) {
+			margin-bottom: 1.7em;
+		}
+		> *:not(:last-child) {margin-bottom: 0.5em;}
+	}
+
+	&__button {
+		color:#000;
+	}
+
+	&__image {
+		position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			object-fit: cover;
+	}
+}
+/* -------------------------Download-------------------------- */
+.download {
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		min-height: 100svh;
+		justify-content:center;
+		align-items: center;
+	}
+
+	&__content {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content:center;
+		align-items: center;
+		text-align: center;
+		padding-top: clamp(50px, 5vw, 300px);
+		padding-bottom: clamp(30px, 5vw, 170px);
+	}
+
+	&__title {
+		text-wrap: balance;
+		font-weight: 600;
+		max-width: 1400px;
+		font-size: clamp(36px, 5vw, 96px);
+		&:not(:last-child) {
+			margin-bottom: 0.25em;
+		}
+	}
+
+	&__text {
+		font-size: clamp(16px, 1vw, 36px);
+		max-width: 985px;
+		&:not(:last-child) {
+			margin-bottom: 1.7em;
+		}
+		> *:not(:last-child) {margin-bottom: 0.5em;}
+	}
+
+	&__button {}
+
+	&__image {
+		@media (min-width:$mobile){
+			max-width: 46%;
+		}
+	}
+}
+/* -------------------------Video-------------------------- */
+.video {
+	height: 100svh;
+	&__item {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+/* -------------------------Footer-------------------------- */
+.footer {
+
+	&__container {
+		display: flex;
+		align-items: center;
+		justify-content:space-between;
+		gap: 20px;
+		padding-block: 10px;
+	}
+
+	&__logo {
+		width: clamp(100px, 10vw, 260px);
+	}
+
+	&__button {
+		transition: background-color 0.3s, color 0.3s;
+		text-align: center;
+		border: 1px solid #000;
+		border-radius: 262px;
+		aspect-ratio: 1;
+		display: flex;
+		justify-content:center;
+		align-items: center;
+		width: clamp(40px, 3vw, 85px);
+		font-size: clamp(16px, 1vw, 32px);
+			&:hover {
+				background-color: #000;
+				color: #fff;
+			}
+		}
+	}
